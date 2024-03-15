@@ -227,8 +227,11 @@
         </Component>
         <Component class="javax.swing.JButton" name="Boton_Subir">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Subir"/>
+            <Property name="text" type="java.lang.String" value="Subir Archivo"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Boton_SubirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="Boton_Guardar">
           <Properties>

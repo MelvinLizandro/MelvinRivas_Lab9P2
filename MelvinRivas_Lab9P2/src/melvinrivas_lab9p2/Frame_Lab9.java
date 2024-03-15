@@ -4,6 +4,13 @@
  */
 package melvinrivas_lab9p2;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author l3306
@@ -112,7 +119,12 @@ public class Frame_Lab9 extends javax.swing.JFrame {
         Label_Subiendo.setForeground(new java.awt.Color(0, 0, 0));
         Label_Subiendo.setText("Subiendo Archivo:");
 
-        Boton_Subir.setText("Subir");
+        Boton_Subir.setText("Subir Archivo");
+        Boton_Subir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_SubirActionPerformed(evt);
+            }
+        });
 
         Boton_Guardar.setText("Guardar");
 
@@ -179,6 +191,46 @@ public class Frame_Lab9 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void Boton_SubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_SubirActionPerformed
+        // TODO add your handling code here:
+ 
+        File Archivo  = null;
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Guardar archivo");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
+        fileChooser.setFileFilter(filter);
+        int userSelection = fileChooser.showSaveDialog(null);
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+             Archivo = fileChooser.getSelectedFile();
+
+        }
+            Hilo_Barra barra = new Hilo_Barra(Carga_Archivo);
+            Thread proceso3 = new Thread(barra);
+            proceso3.start();
+    
+
+                    try {
+                        FileReader fr = new FileReader(Archivo);
+                        BufferedReader br = new BufferedReader(fr);
+                        String linea = null;
+                        do {
+                            linea = br.readLine();
+
+                            if (linea != null) {
+
+                                Contenido.setText(Contenido.getText() + linea + "\n");
+                            }
+                        } while (linea != null);
+                    } catch (IOException e) {
+
+                    }
+
+                
+
+        
+        
+    }//GEN-LAST:event_Boton_SubirActionPerformed
 
     /**
      * @param args the command line arguments
