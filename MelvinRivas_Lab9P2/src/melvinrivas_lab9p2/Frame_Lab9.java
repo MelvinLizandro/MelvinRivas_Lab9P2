@@ -5,10 +5,13 @@
 package melvinrivas_lab9p2;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -20,6 +23,9 @@ public class Frame_Lab9 extends javax.swing.JFrame {
     /**
      * Creates new form Frame_Lab9
      */
+        File Archivo  = null;
+        
+    
     public Frame_Lab9() {
         initComponents();
         
@@ -127,6 +133,11 @@ public class Frame_Lab9 extends javax.swing.JFrame {
         });
 
         Boton_Guardar.setText("Guardar");
+        Boton_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton_GuardarActionPerformed(evt);
+            }
+        });
 
         Label_Titulo.setFont(new java.awt.Font("Dialog", 2, 24)); // NOI18N
         Label_Titulo.setForeground(new java.awt.Color(0, 0, 0));
@@ -195,7 +206,7 @@ public class Frame_Lab9 extends javax.swing.JFrame {
     private void Boton_SubirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_SubirActionPerformed
         // TODO add your handling code here:
  
-        File Archivo  = null;
+        String Linea2 = "";
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Guardar archivo");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de texto (.txt)", "txt");
@@ -204,33 +215,48 @@ public class Frame_Lab9 extends javax.swing.JFrame {
         if (userSelection == JFileChooser.APPROVE_OPTION) {
              Archivo = fileChooser.getSelectedFile();
 
-        }
-            Hilo_Barra barra = new Hilo_Barra(Carga_Archivo);
-            Thread proceso3 = new Thread(barra);
-            proceso3.start();
-    
+              try {
+            FileReader fr = new FileReader(Archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linea = null;
+            do {
 
-                    try {
-                        FileReader fr = new FileReader(Archivo);
-                        BufferedReader br = new BufferedReader(fr);
-                        String linea = null;
-                        do {
-                            linea = br.readLine();
-
-                            if (linea != null) {
-
-                                Contenido.setText(Contenido.getText() + linea + "\n");
-                            }
-                        } while (linea != null);
-                    } catch (IOException e) {
-
-                    }
-
+                linea = br.readLine();
                 
+                if (linea != null) {
+                    Linea2+=linea+"\n";
+                }
 
-        
-        
+            } while (linea != null);
+
+            Hilo_Barra hilo = new Hilo_Barra(Carga_Archivo,Contenido,Linea2);
+            hilo.start();
+            
+        } catch (IOException e) {
+
+        }
+
+             
+        }
+
+
     }//GEN-LAST:event_Boton_SubirActionPerformed
+
+    private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
+        // TODO add your handling code here:
+ 
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Archivo))) {
+
+            bw.write(Contenido.getText());
+
+            bw.flush();
+            JOptionPane.showMessageDialog(this, "Archivo guardado exitosamente");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Carga_Archivo.setValue(0);
+        
+    }//GEN-LAST:event_Boton_GuardarActionPerformed
 
     /**
      * @param args the command line arguments

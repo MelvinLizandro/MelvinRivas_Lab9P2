@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 public class Hilo_Hora implements Runnable {
     
     private JLabel Hora;
-
+   
     public Hilo_Hora(JLabel Hora) {
         this.Hora = Hora;
     }
@@ -36,3 +36,5 @@ public class Hilo_Hora implements Runnable {
     }
     
 }
+
+

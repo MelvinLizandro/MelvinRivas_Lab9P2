@@ -4,7 +4,12 @@
  */
 package melvinrivas_lab9p2;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.JProgressBar;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -13,27 +18,38 @@ import javax.swing.JProgressBar;
 public class Hilo_Barra extends Thread {
     
     private JProgressBar barra;
+    private JTextArea Contenido;
+   private String archivo;
     Boolean corriendo= true;
-
-    public Hilo_Barra(JProgressBar barra) {
+    
+    
+    public Hilo_Barra(JProgressBar barra, JTextArea Contenido,String archivo) {
         this.barra = barra;
+        this.Contenido = Contenido;
+        this.archivo = archivo;
     }
     
+
     @Override
-    public void run(){
-        while(corriendo){
+    public void run() {
+        
+        while (corriendo == true) {
+
+            barra.setValue(barra.getValue() + 1);
+            if (barra.getValue() == 100) {
+                   
+                Contenido.setText(archivo);
+                         corriendo = false;
+                }
+            //a
+                try {
+                    Thread.sleep(70);
+                } catch (InterruptedException ex) {
+                }
             
-                barra.setValue(barra.getValue()+1);
-                if(barra.getValue()==100000){
-                    corriendo=false;
-                }                 
-           
-            
-            try {
-                Thread.sleep(70);
-            } catch (InterruptedException ex) {
-            }
         }
     }
     
+    
 }
+
