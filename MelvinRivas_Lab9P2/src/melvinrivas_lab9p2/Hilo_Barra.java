@@ -29,7 +29,7 @@ public class Hilo_Barra extends Thread {
         this.archivo = archivo;
     }
     
-
+//a
     @Override
     public void run() {
         
