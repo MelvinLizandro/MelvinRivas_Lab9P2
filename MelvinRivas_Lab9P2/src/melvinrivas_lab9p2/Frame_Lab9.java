@@ -15,6 +15,14 @@ public class Frame_Lab9 extends javax.swing.JFrame {
      */
     public Frame_Lab9() {
         initComponents();
+        
+          Hilo_Hora hora =new Hilo_Hora(Hora);
+        Thread proceso1 = new Thread(hora);
+        proceso1.start();      
+        
+        Hilo_Fecha fecha = new Hilo_Fecha(Fecha); 
+        Thread proceso2 = new Thread(fecha);
+        proceso2.start();
     }
 
     /**
@@ -27,9 +35,11 @@ public class Frame_Lab9 extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        Label_Bienvenido = new javax.swing.JLabel();
+        Label_Fecha = new javax.swing.JLabel();
+        Fecha = new javax.swing.JLabel();
+        Label_Hora = new javax.swing.JLabel();
+        Hora = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         Carga_Archivo = new javax.swing.JProgressBar();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -43,40 +53,52 @@ public class Frame_Lab9 extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Bienvenido");
+        Label_Bienvenido.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        Label_Bienvenido.setForeground(new java.awt.Color(0, 0, 0));
+        Label_Bienvenido.setText("Bienvenido");
 
-        jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Fecha Actual:");
+        Label_Fecha.setBackground(new java.awt.Color(0, 0, 0));
+        Label_Fecha.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Label_Fecha.setForeground(new java.awt.Color(0, 0, 0));
+        Label_Fecha.setText("Fecha Actual:");
 
-        jLabel3.setText("jLabel3");
+        Fecha.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        Fecha.setForeground(new java.awt.Color(0, 0, 0));
+
+        Label_Hora.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        Label_Hora.setForeground(new java.awt.Color(0, 0, 0));
+        Label_Hora.setText("Hora Actual: ");
+
+        Hora.setFont(new java.awt.Font("Dialog", 2, 18)); // NOI18N
+        Hora.setForeground(new java.awt.Color(0, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(21, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(Label_Bienvenido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Label_Fecha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                    .addComponent(Fecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Hora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(Label_Hora, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(89, 89, 89)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107)
+                .addComponent(Label_Bienvenido, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Label_Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
+                .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(Label_Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,11 +220,13 @@ public class Frame_Lab9 extends javax.swing.JFrame {
     private javax.swing.JButton Boton_Subir;
     private javax.swing.JProgressBar Carga_Archivo;
     private javax.swing.JTextArea Contenido;
+    private javax.swing.JLabel Fecha;
+    private javax.swing.JLabel Hora;
+    private javax.swing.JLabel Label_Bienvenido;
+    private javax.swing.JLabel Label_Fecha;
+    private javax.swing.JLabel Label_Hora;
     private javax.swing.JLabel Label_Subiendo;
     private javax.swing.JLabel Label_Titulo;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
